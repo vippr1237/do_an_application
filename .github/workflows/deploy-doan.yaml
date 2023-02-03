@@ -15,8 +15,9 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+          script_stop: false
           script: |
-            kill -9 $(ps -ef | grep "sudo php artisan serve --host=ec2-54-151-251-240.ap-southeast-1.compute.amazonaws.com --port=80" | awk '{print $2}' | head -n 1) > /dev/null 2>&1
+            kill -9 $(ps -ef | grep "sudo php artisan serve --host=${{ secrets.HOST }} --port=80" | awk '{print $2}' | head -n 1) > /dev/null 2>&1
             cd do_an_application
             git pull origin main
-            nohup sudo php artisan serve --host=ec2-54-151-251-240.ap-southeast-1.compute.amazonaws.com --port=80 > /dev/null 2>&1 &
+            nohup sudo php artisan serve --host=${{ secrets.HOST }} --port=80 > /dev/null 2>&1 &
