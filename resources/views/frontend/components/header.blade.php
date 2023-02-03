@@ -1,4 +1,4 @@
-<section class="top-header desktop" style="background-color: #00e600;">
+<section class="top-header desktop" style="background-color: #ff8c1a;">
     <div class="container">
         <div class="content">
             <div class="left">
@@ -38,7 +38,7 @@
 </section>
 
 <div class="commonTop" style="position: unset !important;">
-    <div id="headers" style="background-color: #4dff4d;">
+    <div id="headers" style="background-color: #ffa64d;">
         <div class="container header-wrapper">
             <!--Thay đổi-->
             <div class="logo">
