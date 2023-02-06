@@ -34,5 +34,4 @@ return [
         'client_secret' => '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',
         'redirect' => 'http://ec2-54-151-251-240.ap-southeast-1.compute.amazonaws.com/account/auth/google/callback',
     ],
-
 ];
