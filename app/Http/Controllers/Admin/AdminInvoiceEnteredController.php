@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequestCreateInvoiceEntered;
 use App\Models\InvoiceEntered;
 use App\Models\Menu;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Import_histories;
 use App\Models\Supplier;
+use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -25,24 +27,57 @@ class AdminInvoiceEnteredController extends Controller
     public function hansudung($id)
     {
         $invoiceEntered = InvoiceEntered::where('ie_product_id',$id)->get();
-        $product = Product::where('id', $id)->first();
-        if($product->pro_sale) {
-            $giaban = ((100 - $product->pro_sale) * $product->pro_price)  /  100;
-        } else {
-            $giaban = $product->product_price;
-        }
-        $orderProductQty = InvoiceEntered::where('ie_product_id',$id)->where('ie_number_sold', '>', 0)->first()->ie_number_sold;
-        foreach($invoiceEntered as $invoice) {
-            if($orderProductQty - $invoice->ie_number >= 0) {
-                $invoice['daban'] = $invoice->ie_number;
-            } else {
-                $invoice['daban'] = $orderProductQty;
+
+        $orderProductQty = InvoiceEntered::where('ie_product_id',$id)->first()->ie_number_sold;
+        $orders = Order::where('od_product_id', $id)->get();
+        $arr = Order::select('od_qty', 'od_price', 'od_transaction_id')->where('od_product_id', $id)->get()->toArray();
+
+        foreach($arr as $key => $item) {
+            if(Transaction::where('id', $item['od_transaction_id'])->first()->tst_status != 3) {
+                unset($arr[$key]);
             }
-            $orderProductQty -= $invoice->ie_number;
-
-            $invoice['giaban'] = $giaban;
+        }
+        foreach($invoiceEntered as $invoice) {
+            if($orderProductQty > 0) {
+                if($orderProductQty - $invoice->ie_number >= 0) {
+                    $invoice['daban'] = $invoice->ie_number;
+                } else {
+                    $invoice['daban'] = $orderProductQty;
+                }
+                $orderProductQty -= $invoice->ie_number;
+            } else {
+                $invoice['daban'] = 0;
+            }
         }
 
+        $new_arr = [];
+        foreach($arr as $item) {
+            if($item['od_qty'] > 1) {
+                for($i = 0; $i < $item['od_qty']; $i++) {
+                    $new_arr[] = [
+                        'od_qty' => 1,
+                        'od_price' => $item['od_price']
+                    ];
+                }
+            } else {
+                $new_arr[] = $item;
+            }
+        }
+
+        $sum = $orders->sum('od_qty');
+        foreach($invoiceEntered as $invoice) {
+            if($sum > 0) {
+                if($sum - $invoice->ie_number >= 0) {
+                    $invoice['order'] = array_slice($new_arr,0, $invoice->ie_number);
+                } else {
+                    $invoice['order'] = $new_arr;
+                }
+                $sum -= $invoice->ie_number;
+                $new_arr = array_slice($new_arr, $invoice->ie_number);
+            } else {
+                $invoice['test'] = [];
+            }
+        }
         $datenow = date('Y-m-d 00:00:00');
         return view('admin.inventory.hansudung', compact('invoiceEntered','datenow'));
     }
