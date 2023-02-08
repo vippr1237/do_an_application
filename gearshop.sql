@@ -712,6 +712,13 @@ CREATE TABLE `users` (
   `google_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `phone`, `log_login`, `count_comment`, `address`, `avatar`, `remember_token`, `created_at`, `updated_at`, `google_id`) VALUES
+(26, 'Quang Ha Nguyen', 'vippr1239@gmail.com', '2021-05-19 14:38:54', NULL, NULL, NULL, 0, NULL, NULL, NULL, '2023-01-07 13:30:30', '2023-01-07 13:30:30', '101777264469981599492');
+
 -- --------------------------------------------------------
 
 --
