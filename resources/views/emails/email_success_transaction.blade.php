@@ -33,6 +33,6 @@
         </div>
     </div>
     <div style="background: #f4f5f5;box-sizing: border-box;padding: 15px">
-        <p style="margin:2px 0;color: #333">Cảm ơn bạn đã tin dùng dịch vụ của HaloShop.</p>
+        <p style="margin:2px 0;color: #333">Cảm ơn bạn đã tin dùng dịch vụ của GearShop.</p>
     </div>
 </div>
