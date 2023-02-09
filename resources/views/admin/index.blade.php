@@ -23,11 +23,11 @@
                 </div>
                 <div class="box-body">
                     <ul>
-                        <li>Họ Tên: Trần Trung Hiếu.</li>
+                        <li>Họ Tên: Nguyễn Quang Hà.</li>
                         <li>Lớp : D13CNPM4.</li>
-                        <li>Số điện thoại : 0328698912.</li>
-                        <li>Email : hieu016286@gmail.com.</li>
-                        <li>Địa chỉ : Xuân Đỉnh - Bắc Từ Liêm - Hà Nội.</li>
+                        <li>Số điện thoại: 0368136948.</li>
+                        <li>Email : coangha21@gmail.com.</li>
+                        <li>Địa chỉ : Trần Cung - Bắc Từ Liêm - Hà Nội.</li>
                     </ul>
                 </div>
 
