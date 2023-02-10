@@ -29,6 +29,9 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <style>
+        .block-hover:hover {
+            cursor: not-allowed;
+        }
         .custom-logo {
             background-color: #b3ffb3
         }
@@ -114,7 +117,7 @@
                 <ul class="sidebar-menu tree" data-widget="tree">
                     <li class="header">ĐIỀU HƯỚNG CHÍNH</li>
                     <li class="">
-                        <a href="{{  route('admin.statistical') }}">
+                        <a href="{{ route('admin.statistical') }}">
                             <i class="fa fa-dashboard"></i> <span>Báo cáo thống kê</span>
                         </a>
                     </li>

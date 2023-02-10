@@ -39,6 +39,6 @@ return [
 		]
 	],
 	'admin' => [
-		'title' => 'Trang quản trị hệ thống bán linh kiện máy tính'
+		'title' => 'Trang quản trị hệ thống bán máy chơi game'
 	]
 ];
